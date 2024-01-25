@@ -27,8 +27,15 @@ func (*BiServer) GracefulStop(ctx context.Context) error {
 }
 
 // RegisterRoutes implements http.Server.
-func (*BiServer) RegisterRoutes() {
-	panic("unimplemented")
+func (s *BiServer) RegisterRoutes() {
+	s.Engine.Use(middleware.CorsMiddleware())
+	apiGroup := s.Engine.Group("/api/backlogimpl")
+	{
+		apiGroup.GET("/users", s.Router.GetUsers)
+		apiGroup.GET("/orders", s.Router.GetOrders)
+		apiGroup.GET("/items", s.Router.GetOrderItems)
+		apiGroup.GET("/products", s.Router.GetProducts)
+	}
 }
 
 // Start server
