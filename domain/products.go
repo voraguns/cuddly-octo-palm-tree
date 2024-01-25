@@ -6,3 +6,8 @@ type Products struct {
 	Price float64 `json:"price"`
 	Stock int     `json:"stock"`
 }
+
+type ProductResp struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}

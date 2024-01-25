@@ -56,3 +56,16 @@ func (s *BiServiceImpl) GetProducts(ctx context.Context) ([]*domain.Products, er
 	}
 	return products, nil
 }
+
+func (s *BiServiceImpl) GetUsersById(ctx context.Context, id int) (domain.Users, error) {
+	user, err := s.biRepo.GetUserById(ctx, id)
+	if err != nil {
+		return domain.Users{}, err
+	}
+	return user, nil
+}
+
+func (s *BiServiceImpl) DeleteUser(ctx context.Context, id int) error {
+	err := s.biRepo.DeleteUser(ctx, id)
+	return err
+}

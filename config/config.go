@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -25,6 +26,7 @@ type DBConfig struct {
 func NewConfig() (*Config, error) {
 	var config Config
 	if err := readFile(&config); err != nil {
+		fmt.Println("Debug")
 		return nil, err
 	}
 	if err := readEnv(&config); err != nil {

@@ -32,9 +32,11 @@ func (s *BiServer) RegisterRoutes() {
 	apiGroup := s.Engine.Group("/api/backlogimpl")
 	{
 		apiGroup.GET("/users", s.Router.GetUsers)
-		apiGroup.GET("/orders", s.Router.GetOrders)
+		apiGroup.GET("/orders", s.Router.GetOrder)
 		apiGroup.GET("/items", s.Router.GetOrderItems)
 		apiGroup.GET("/products", s.Router.GetProducts)
+		apiGroup.GET("/users/:id", s.Router.GetUserById)
+		apiGroup.DELETE("/users/:id", s.Router.DeleteUser)
 	}
 }
 

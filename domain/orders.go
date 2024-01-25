@@ -13,3 +13,9 @@ type OrderItems struct {
 	ProductId int `json:"product_id"`
 	Quantity  int `json:"quantity"`
 }
+
+type OrderWithProduct struct {
+	OrderId  int           `json:"order_id"`
+	Product  []ProductResp `json:"product"`
+	Quantity int
+}

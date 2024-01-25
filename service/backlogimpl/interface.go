@@ -10,4 +10,7 @@ type BiService interface {
 	GetOrders(ctx context.Context) ([]*domain.Orders, error)
 	GetOrderItems(ctx context.Context) ([]*domain.OrderItems, error)
 	GetProducts(ctx context.Context) ([]*domain.Products, error)
+	GetUsersById(ctx context.Context, id int) (domain.Users, error)
+	DeleteUser(ctx context.Context, id int) error
+	// EditUser(ctx context.Context, id int) error
 }

@@ -3,6 +3,7 @@ package backlogimpl
 import (
 	"context"
 	"cuddly-octo-palm-tree/domain"
+	"cuddly-octo-palm-tree/infra/db/pgserver/models"
 
 	"gorm.io/gorm"
 )
@@ -47,4 +48,42 @@ func (r *BiRepositoryImpl) GetOrders(ctx context.Context) ([]*domain.Orders, err
 		return nil, err
 	}
 	return orders, nil
+}
+
+func (r *BiRepositoryImpl) GetUserById(ctx context.Context, id int) (domain.Users, error) {
+	var user domain.Users
+	if err := r.db.First(&user, id).Error; err != nil {
+		return domain.Users{}, err
+	}
+	return user, nil
+}
+
+func (r *BiRepositoryImpl) GetOrderWithProductName(ctx context.Context, id int) (domain.OrderWithProduct, error) {
+	var orderWithProductname domain.OrderWithProduct
+	var order domain.OrderItems
+	if err := r.db.First(&order).Joins("").Where("").Error; err != nil {
+		return domain.OrderWithProduct{}, err
+	}
+	return orderWithProductname, nil
+}
+
+func (r *BiRepositoryImpl) DeleteUser(ctx context.Context, id int) error {
+	var user models.Users
+
+	if err := r.db.Delete(&user, id).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *BiRepositoryImpl) EditUser(ctx context.Context, id int) error {
+	var user models.Users
+	if err := r.db.First(&user, id).Error; err != nil {
+		return err
+	}
+
+	if err := r.db.Save(&user).Error; err != nil {
+		return err
+	}
+	return nil
 }
