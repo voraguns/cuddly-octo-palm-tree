@@ -1,0 +1,11 @@
+app: cuddly-octo-palm-tree
+ginMode: debug
+httpPort: 3001
+dbConftemp:
+  dsn: sqlserver://sa:yourStrong(!)Password@localhost:1433?database=master
+  maxIdleConns: 50
+  maxOpenConns: 100
+dbConf:
+  dsn: host=192.168.1.62 user=root password=secret dbname=sdm_internal_dev port=5432 sslmode=disable
+  maxIdleConns: 50
+  maxOpenConns: 100
